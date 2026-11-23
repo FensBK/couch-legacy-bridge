@@ -31,4 +31,4 @@ When Couchcraft creates the renderer for a guest, this replaces the forcefield t
 **Workaround / possible fix**
 
 Only let the first registration through, for example with a `@WrapOperation` on `TextureManager.register` in `WorldBorderRenderer.<init>` that skips it once the texture is already registered. That's what I'm doing in a compatibility mod and it fixes the crash:
-[link to WorldBorderRendererMixin.java in your repo]
+https://github.com/FensBK/couch-legacy-bridge/blob/main/src/main/java/dev/couchlegacy/mixin/WorldBorderRendererMixin.java
