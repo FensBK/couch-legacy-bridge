@@ -1,0 +1,9 @@
+{
+  "couchlegacy.leave.title": "Leave Session",
+  "couchlegacy.leave.message": "%s will leave this split-screen session. The game carries on for the other players.",
+  "couchlegacy.leave.button": "Leave Session",
+  "couchlegacy.join.title": "New Player",
+  "couchlegacy.join.message": "Press START again to join",
+  "couchlegacy.options.vertical_split": "Vertical Split Screen",
+  "couchlegacy.options.split_hud_size": "HUD Size (Split Screen)"
+}

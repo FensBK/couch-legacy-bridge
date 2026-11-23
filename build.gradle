@@ -1,0 +1,62 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+base {
+	archivesName = project.archives_base_name
+}
+
+// Couchcraft and Legacy4J are not on any maven: compile against the jars already
+// installed in the Prism instance. They are compile-only; nothing gets bundled.
+def modsDir = file(project.property('modsDir'))
+def modJars = fileTree(modsDir) {
+	include '*ouchcraft*.jar'
+	include '*egacy4J*.jar'
+	include '*egacy4j*.jar'
+}
+
+// Legacy4J ships Factory API nested inside its own jar (META-INF/jars).
+def nestedDir = layout.buildDirectory.dir('nested-jars')
+def extractNested = tasks.register('extractNestedJars', Copy) {
+	from({ modJars.files.collect { zipTree(it) } }) {
+		include 'META-INF/jars/*.jar'
+		eachFile { it.path = it.name }
+	}
+	includeEmptyDirs = false
+	into nestedDir
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	compileOnly modJars
+	compileOnly files({ fileTree(nestedDir).files }) { builtBy extractNested }
+}
+
+tasks.named('compileJava') {
+	doFirst {
+		if (modJars.files.size() < 2) {
+			throw new GradleException("Couchcraft e/ou Legacy4J não encontrados em ${modsDir}. Use -PmodsDir=\"caminho/da/pasta/mods\".")
+		}
+	}
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = "UTF-8"
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}

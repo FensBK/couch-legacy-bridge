@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "couchlegacy",
+	"version": "${version}",
+	"name": "Couchcraft + Legacy4J Bridge",
+	"description": "Makes Couchcraft local split screen feel like the Legacy Console Editions on Legacy4J: Legacy4J controller handling, HUD and menus for every player, console-style join, per-profile skins, guest menu limits and split-screen settings.",
+	"authors": [
+		"FensZard",
+		"Claude"
+	],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.couchlegacy.CouchLegacyBridge"
+		]
+	},
+	"mixins": [
+		"couchlegacy.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"couchcraft": "0.2.x",
+		"legacy": "1.9.x"
+	}
+}

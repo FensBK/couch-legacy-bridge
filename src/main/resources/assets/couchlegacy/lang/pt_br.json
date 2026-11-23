@@ -1,0 +1,9 @@
+{
+  "couchlegacy.leave.title": "Sair da sessão",
+  "couchlegacy.leave.message": "%s vai sair desta sessão de tela dividida. O jogo continua normalmente para os outros jogadores.",
+  "couchlegacy.leave.button": "Sair da sessão",
+  "couchlegacy.join.title": "Novo jogador",
+  "couchlegacy.join.message": "Pressione START novamente para entrar",
+  "couchlegacy.options.vertical_split": "Tela dividida na vertical",
+  "couchlegacy.options.split_hud_size": "Tamanho do HUD (tela dividida)"
+}
